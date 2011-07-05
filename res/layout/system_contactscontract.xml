@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:orientation="vertical"
+    >
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="List"
+    android:onClick="onListClick"
+    />
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="Add"
+    android:onClick="onAddClick"
+    />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+>
+<TextView android:text="raw_ID"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" ></TextView>
+<EditText android:id="@+id/rawupdateId"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" />
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="rawUpdate"
+    android:onClick="onRawUpdateClick"
+    />
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="rawDelete"
+    android:onClick="onRawDeleteClick"
+    />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+>
+<TextView android:text="data_ID"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" ></TextView>
+<EditText android:id="@+id/dataupdateId"
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" />
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="dataUpdate"
+    android:onClick="onDataUpdateClick"
+    />
+<Button
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="dataDelete"
+    android:onClick="onDataDeleteClick"
+    />
+    </LinearLayout>
+</LinearLayout>

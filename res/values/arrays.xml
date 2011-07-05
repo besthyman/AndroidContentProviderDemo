@@ -1,0 +1,4 @@
+<resources><string-array name="activity_providers">
+<item>ContactsContract</item>
+</string-array>
+</resources>

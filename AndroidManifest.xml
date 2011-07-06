@@ -14,6 +14,13 @@
 
         <activity android:name=".system.contactscontract.ContactsContractActivity"
                   android:label="ContactsContractActivity"/>
+
+        <activity android:name=".custom.notes.client.NotesClientActivity"
+                  android:label="NotesClientActivity"/>
+                  
+        <provider android:name=".custom.notes.NotesContentProvider"
+        	 android:authorities="com.hyman.demo.android.contentprovider.custom.notes.NotesContentProvider" />
+                  
     </application>
 
 

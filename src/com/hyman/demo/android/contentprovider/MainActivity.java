@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Spinner;
 
+import com.hyman.demo.android.contentprovider.custom.notes.client.NotesClientActivity;
 import com.hyman.demo.android.contentprovider.system.contactscontract.ContactsContractActivity;
 
 public class MainActivity extends Activity {
@@ -21,6 +22,9 @@ public class MainActivity extends Activity {
 		String value = spinner.getSelectedItem().toString();
 		if ("ContactsContract".equals(value)) {
 			Intent intent = new Intent(this, ContactsContractActivity.class);
+			MainActivity.this.startActivity(intent);
+		} else if ("Custom Notes Client".equals(value)) {
+			Intent intent = new Intent(this, NotesClientActivity.class);
 			MainActivity.this.startActivity(intent);
 		}
     }

@@ -5,17 +5,15 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
-import android.content.ContentResolver;
-import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.hyman.demo.android.contentprovider.ContentProviderUtil;
 import com.hyman.demo.android.contentprovider.R;
 
 public class ContactsContractActivity extends Activity {
@@ -107,32 +105,20 @@ public class ContactsContractActivity extends Activity {
 		return managedQuery(uri, projection, null, selectionArgs,
 				sortOrder);
 	}
-	
-	private void logCursor(Cursor cursor) {
-		Log.d(TAG, "count:" + cursor.getCount());
-		cursor.moveToFirst();
-		while (!cursor.isAfterLast()) {
-			Log.d(TAG, "row:" + cursor.getPosition());
-			for (int i = 0; i < cursor.getColumnCount(); i++) {
-				Log.d(TAG, "column " + cursor.getColumnName(i) + ":" + cursor.getString(i));
-			}
-			cursor.moveToNext();
-		}
-	}
 
 	public void onListClick(View src) {
 		Log.d(TAG, "onListClick");
 		Log.d(TAG, "getContacts");
 		Cursor contacts = getContacts();
-		logCursor(contacts);
+		ContentProviderUtil.getInstance().logCursor(TAG, contacts);
 		contacts.close();
 		Log.d(TAG, "getRawContacts");
 		Cursor rawcontacts = getRawContacts();
-		logCursor(rawcontacts);
+		ContentProviderUtil.getInstance().logCursor(TAG, rawcontacts);
 		rawcontacts.close();
 		Log.d(TAG, "getDataContacts");
 		Cursor datacontacts = getDataContacts();
-		logCursor(datacontacts);
+		ContentProviderUtil.getInstance().logCursor(TAG, datacontacts);
 		datacontacts.close();
 	}
 
@@ -167,34 +153,13 @@ public class ContactsContractActivity extends Activity {
 		return ops;
 	}
 
-	private ContentProviderResult[] applyBatch(String authority,
-			ArrayList<ContentProviderOperation> operations) {
-		ContentResolver cr = getContentResolver();
-		try {
-			ContentProviderResult[] results = cr.applyBatch(authority,
-					operations);
-			return results;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (OperationApplicationException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public void onAddClick(View src) {
 		Log.d(TAG, "onAddClick");
 		ArrayList<ContentProviderOperation> addContactOperations = getAddContactOperations(
 				"Hyman", "8601087654567");
-		ContentProviderResult[] results = applyBatch(
+		ContentProviderResult[] results = ContentProviderUtil.getInstance().applyBatch(this,
 				ContactsContract.AUTHORITY, addContactOperations);
-		logContentProviderResult(results);
-	}
-	
-	private void logContentProviderResult(ContentProviderResult[] results) {
-		for (ContentProviderResult result : results) {
-			Log.d(TAG, result.toString());
-		}
+		ContentProviderUtil.getInstance().logContentProviderResult(TAG, results);
 	}
 
 	private ArrayList<ContentProviderOperation> getUpdateRawContactOperations(
@@ -214,9 +179,9 @@ public class ContactsContractActivity extends Activity {
 		String updateId = updateIdEditText.getText().toString();
 		ArrayList<ContentProviderOperation> updateContactOperations = getUpdateRawContactOperations(
 				updateId);
-		ContentProviderResult[] results = applyBatch(
+		ContentProviderResult[] results = ContentProviderUtil.getInstance().applyBatch(this,
 				ContactsContract.AUTHORITY, updateContactOperations);
-		logContentProviderResult(results);
+		ContentProviderUtil.getInstance().logContentProviderResult(TAG, results);
 	}
 
 	private ArrayList<ContentProviderOperation> getDeleteRawContactOperations(
@@ -235,9 +200,9 @@ public class ContactsContractActivity extends Activity {
 		String updateId = updateIdEditText.getText().toString();
 		ArrayList<ContentProviderOperation> deleteContactOperations = getDeleteRawContactOperations(
 				updateId);
-		ContentProviderResult[] results = applyBatch(
+		ContentProviderResult[] results = ContentProviderUtil.getInstance().applyBatch(this,
 				ContactsContract.AUTHORITY, deleteContactOperations);
-		logContentProviderResult(results);
+		ContentProviderUtil.getInstance().logContentProviderResult(TAG, results);
 	}
 
 
@@ -258,9 +223,9 @@ public class ContactsContractActivity extends Activity {
 		String updateId = updateIdEditText.getText().toString();
 		ArrayList<ContentProviderOperation> updateContactOperations = getUpdateDataContactOperations(
 				updateId);
-		ContentProviderResult[] results = applyBatch(
+		ContentProviderResult[] results = ContentProviderUtil.getInstance().applyBatch(this,
 				ContactsContract.AUTHORITY, updateContactOperations);
-		logContentProviderResult(results);
+		ContentProviderUtil.getInstance().logContentProviderResult(TAG, results);
 	}
 
 	private ArrayList<ContentProviderOperation> getDeleteDataContactOperations(
@@ -279,9 +244,9 @@ public class ContactsContractActivity extends Activity {
 		String updateId = updateIdEditText.getText().toString();
 		ArrayList<ContentProviderOperation> deleteContactOperations = getDeleteDataContactOperations(
 				updateId);
-		ContentProviderResult[] results = applyBatch(
+		ContentProviderResult[] results = ContentProviderUtil.getInstance().applyBatch(this,
 				ContactsContract.AUTHORITY, deleteContactOperations);
-		logContentProviderResult(results);
+		ContentProviderUtil.getInstance().logContentProviderResult(TAG, results);
 	}
 }
 

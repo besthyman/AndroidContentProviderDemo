@@ -1,4 +1,5 @@
 <resources><string-array name="activity_providers">
 <item>ContactsContract</item>
+<item>Custom Notes Client</item>
 </string-array>
 </resources>

@@ -1,5 +1,8 @@
 <resources><string-array name="activity_providers">
 <item>ContactsContract</item>
 <item>Custom Notes Client</item>
+<item>Preference</item>
+<item>Storage Internal</item>
+<item>Storage External</item>
 </string-array>
 </resources>

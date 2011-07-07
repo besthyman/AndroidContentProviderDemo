@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Spinner;
 
 import com.hyman.demo.android.contentprovider.custom.notes.client.NotesClientActivity;
+import com.hyman.demo.android.contentprovider.preference.PreferenceActivity;
+import com.hyman.demo.android.contentprovider.storage.external.ExternalStorageActivity;
+import com.hyman.demo.android.contentprovider.storage.internal.InternalStorageActivity;
 import com.hyman.demo.android.contentprovider.system.contactscontract.ContactsContractActivity;
 
 public class MainActivity extends Activity {
@@ -25,6 +28,15 @@ public class MainActivity extends Activity {
 			MainActivity.this.startActivity(intent);
 		} else if ("Custom Notes Client".equals(value)) {
 			Intent intent = new Intent(this, NotesClientActivity.class);
+			MainActivity.this.startActivity(intent);
+		} else if ("Preference".equals(value)) {
+			Intent intent = new Intent(this, PreferenceActivity.class);
+			MainActivity.this.startActivity(intent);
+		} else if ("Storage Internal".equals(value)) {
+			Intent intent = new Intent(this, InternalStorageActivity.class);
+			MainActivity.this.startActivity(intent);
+		} else if ("Storage External".equals(value)) {
+			Intent intent = new Intent(this, ExternalStorageActivity.class);
 			MainActivity.this.startActivity(intent);
 		}
     }

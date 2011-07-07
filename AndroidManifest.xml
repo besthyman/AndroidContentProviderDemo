@@ -20,7 +20,15 @@
                   
         <provider android:name=".custom.notes.NotesContentProvider"
         	 android:authorities="com.hyman.demo.android.contentprovider.custom.notes.NotesContentProvider" />
+                 
+        <activity android:name=".preference.PreferenceActivity"
+                  android:label="PreferenceActivity"/>
                   
+        <activity android:name=".storage.internal.InternalStorageActivity"
+                  android:label="InternalStorageActivity"/>
+                  
+        <activity android:name=".storage.external.ExternalStorageActivity"
+                  android:label="ExternalStorageActivity"/>
     </application>
 
 

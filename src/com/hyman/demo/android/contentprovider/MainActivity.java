@@ -8,6 +8,7 @@ import android.widget.Spinner;
 
 import com.hyman.demo.android.contentprovider.custom.notes.client.NotesClientActivity;
 import com.hyman.demo.android.contentprovider.database.dictionary.DatabaseActivity;
+import com.hyman.demo.android.contentprovider.network.NetworkActivity;
 import com.hyman.demo.android.contentprovider.preference.PreferenceActivity;
 import com.hyman.demo.android.contentprovider.storage.external.ExternalStorageActivity;
 import com.hyman.demo.android.contentprovider.storage.internal.InternalStorageActivity;
@@ -41,6 +42,9 @@ public class MainActivity extends Activity {
 			MainActivity.this.startActivity(intent);
 		} else if ("Database".equals(value)) {
 			Intent intent = new Intent(this, DatabaseActivity.class);
+			MainActivity.this.startActivity(intent);
+		} else if ("Network".equals(value)) {
+			Intent intent = new Intent(this, NetworkActivity.class);
 			MainActivity.this.startActivity(intent);
 		}
     }

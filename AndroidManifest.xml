@@ -32,9 +32,13 @@
                   
         <activity android:name=".database.dictionary.DatabaseActivity"
                   android:label="DatabaseActivity"/>
+                  
+        <activity android:name=".network.NetworkActivity"
+                  android:label="NetworkActivity"/>
     </application>
 
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest> 

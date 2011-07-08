@@ -1,6 +1,9 @@
 package com.hyman.demo.android.contentprovider.storage.external;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -40,6 +43,7 @@ public class ExternalStorageActivity extends Activity {
 	public void onListClick(View src) {
 		Log.d(TAG, "onListClick getExternalFilesDir");
 		File externalFilesDir = getExternalFilesDir(TYPE);
+		createFile(externalFilesDir, "newfile", "abc");
 		Log.d(TAG, externalFilesDir.getAbsolutePath());
 		String[] files = externalFilesDir.list();
 		for (String file : files) {
@@ -50,6 +54,7 @@ public class ExternalStorageActivity extends Activity {
 	public void onList2Click(View src) {
 		Log.d(TAG, "onListClick getExternalStorageDirectory");
 		File externalStorageDirectory = Environment.getExternalStorageDirectory();
+		createFile(externalStorageDirectory, "newfile", "abc");
 		Log.d(TAG, externalStorageDirectory.getAbsolutePath());
 		String[] files = externalStorageDirectory.list();
 		for (String file : files) {
@@ -60,6 +65,7 @@ public class ExternalStorageActivity extends Activity {
 	public void onList3Click(View src) {
 		Log.d(TAG, "onListClick getExternalStoragePublicDirectory");
 		File externalStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		createFile(externalStorageDirectory, "newfile", "abc");
 		Log.d(TAG, externalStorageDirectory.getAbsolutePath());
 		String[] files = externalStorageDirectory.list();
 		if (files == null) {
@@ -71,9 +77,33 @@ public class ExternalStorageActivity extends Activity {
 		}
 	}
 	
+	private void createFile(File dir, String filename, String content) {
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+
+		File newFile = new File(dir, filename);
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(newFile);
+			fos.write(content.getBytes());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void onList4Click(View src) {
 		Log.d(TAG, "onListClick getExternalCacheDir");
 		File externalStorageDirectory = getExternalCacheDir();
+		createFile(externalStorageDirectory, "newfile", "abc");
 		Log.d(TAG, externalStorageDirectory.getAbsolutePath());
 		String[] files = externalStorageDirectory.list();
 		if (files == null) {

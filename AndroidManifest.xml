@@ -29,6 +29,9 @@
                   
         <activity android:name=".storage.external.ExternalStorageActivity"
                   android:label="ExternalStorageActivity"/>
+                  
+        <activity android:name=".database.dictionary.DatabaseActivity"
+                  android:label="DatabaseActivity"/>
     </application>
 
 

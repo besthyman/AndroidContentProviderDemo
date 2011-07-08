@@ -4,5 +4,6 @@
 <item>Preference</item>
 <item>Storage Internal</item>
 <item>Storage External</item>
+<item>Database</item>
 </string-array>
 </resources>
